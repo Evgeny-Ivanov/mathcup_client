@@ -1,0 +1,17 @@
+body {
+    background-color: #f7f7f7;
+}
+
+.app-flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.app__content_padding {
+    padding: 8em 0em;
+}
+
+.app__content_flex {
+    flex: 1;
+}

@@ -1,0 +1,21 @@
+.cropper-modal__select-image-button {
+  display: none;
+}
+
+.cropper {
+  height: 60vh;
+  width: 100%;
+}
+
+.profile-image-load-icon {
+  position: absolute;
+  z-index: 1;
+  right: 1%;
+  top: 2%;
+  cursor: pointer;
+  opacity: .45 !important;
+}
+
+.profile-image-load-icon:hover {
+  opacity: 1 !important;
+}

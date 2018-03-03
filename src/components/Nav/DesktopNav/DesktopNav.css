@@ -1,0 +1,11 @@
+.nav-menu-item_margin {
+    margin-left: 0.5em;
+}
+
+.desktop-nav {
+    min-height: 65px !important;
+}
+
+.desktop-nav__user-dropdown {
+    margin-top: 1.8rem !important;
+}

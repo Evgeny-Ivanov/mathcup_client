@@ -1,0 +1,12 @@
+.app-logo-mobile {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-logo-mobile:before {
+  content: none !important;
+}
+
+.sidebar-pusher_min-height {
+  min-height: 100vh;
+}
