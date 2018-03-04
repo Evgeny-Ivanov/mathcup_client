@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Container, Icon, Menu, Sidebar } from 'semantic-ui-react';
+import { Icon, Menu, Sidebar } from 'semantic-ui-react';
 import SignIn from '../../SignIn';
 import SignUp from '../../SignUp';
 import Link from '../../Link';
@@ -44,8 +44,8 @@ class MobileNav extends Component {
           <Link wrapper={Menu.Item} to='/' onClick={this.handleClose}>
             Об олимпиаде
           </Link>
-          <Link wrapper={Menu.Item} to='/link' onClick={this.handleClose}>
-            Link
+          <Link wrapper={Menu.Item} to='/news' onClick={this.handleClose}>
+            Новости
           </Link>
 
           {isAuth && (

@@ -24,7 +24,7 @@ class DesktopNav extends Component {
             <span className='nav-menu-item_margin'>MathCup</span>
           </Menu.Item>
           <Link wrapper={Menu.Item} to='/'>Об олимпиаде</Link>
-          <Link wrapper={Menu.Item} to='/link'>Link</Link>
+          <Link wrapper={Menu.Item} to='/news'>Новости</Link>
 
           <Dropdown text='Действия' pointing className='link item'>
             <Dropdown.Menu>

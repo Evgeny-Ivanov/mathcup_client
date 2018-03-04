@@ -17,7 +17,12 @@ const User = {
     axios.patch('/api/users/current/', data),
 };
 
-const News = {};
+const News = {
+  create: data =>
+    axios.post('/api/news/', data),
+  fetchList: page =>
+    axios.get(`/api/news/?page=${page}&ordering=-date`),
+};
 
 const Helpers = {
   uploadImage: data =>

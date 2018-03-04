@@ -4,6 +4,7 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App';
+import configure from './configure';
 import registerServiceWorker from './registerServiceWorker';
 
 import userStore from './stores/userStore';
@@ -19,6 +20,8 @@ const stores = {
   signUpStore,
   newsStore,
 };
+
+configure();
 
 ReactDOM.hydrate(
   <Provider {...stores}>

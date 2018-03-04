@@ -1,0 +1,12 @@
+.editor-textarea {
+    min-height: 275px !important;
+    border: 1px solid rgba(34,36,38,.15) !important;
+    padding: 5px !important;
+    border-radius: .28571429rem !important;
+    overflow: hidden;
+}
+
+.editor-toolbar {
+    border: 1px solid rgba(34,36,38,.15) !important;
+    border-radius: .28571429rem !important;
+}

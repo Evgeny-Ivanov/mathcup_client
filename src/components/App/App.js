@@ -9,6 +9,7 @@ import Footer from '../Footer';
 import AboutUs from '../AboutUs';
 import Profile from '../Profile';
 import CreateNews from '../CreateNews';
+import NewsList from '../NewsList';
 import Page404 from '../Page404';
 import './App.css';
 
@@ -33,6 +34,7 @@ class App extends Component {
             <Route exact path='/' component={AboutUs} />
             <PrivateRoute exact path='/profile' component={Profile} />
             <Route exact path='/news/create' component={CreateNews} />
+            <Route exact path='/news' component={NewsList} />
             <Route component={Page404} />
           </Switch>
         </Container>

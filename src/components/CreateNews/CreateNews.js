@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
+import { Redirect } from 'react-router-dom';
 import { Button, Card, Form } from 'semantic-ui-react';
-import Editor from './Editor';
+import Editor from '../Editor';
+import './CreateNews.css';
 
 @inject('newsStore')
 @observer
@@ -9,17 +11,19 @@ class CreateNews extends Component {
   state = {
     header: '',
     content: {},
+    isRedirect: false,
   };
 
   handleContentChange = (content) => {
     this.setState({ content });
   };
 
-  handleCreateNews = (event) => {
+  handleCreateNews = async (event) => {
     event.preventDefault();
 
     const { header, content } = this.state;
-    this.props.newsStore.createNews({ header, content });
+    await this.props.newsStore.createNews({ header, content });
+    this.setState({ isRedirect: true });
   };
 
   handleChange = (event, { name, value }) => {
@@ -27,29 +31,32 @@ class CreateNews extends Component {
   };
 
   render() {
-    const { header } = this.state;
+    const { header, isRedirect } = this.state;
+    const { isLoading } = this.props.newsStore.createState;
+
+    if (isRedirect) {
+      return <Redirect to='/news' />;
+    }
 
     return (
       <Card fluid>
         <Card.Content>
-          <Form>
+          <Form onSubmit={this.handleCreateNews}>
             <Form.Field>
               <label>Заголовок</label>
               <Form.Input
-                onChange={this.handleChange}
+                required
                 name='header'
                 value={header}
+                onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <label>Текст</label>
               <Editor onChange={this.handleContentChange} />
             </Form.Field>
-            <Form.Field>
-              <Button
-                type='submit'
-                onClick={this.handleCreateNews}
-              >
+            <Form.Field className='create-news__submit-button-wrapper'>
+              <Button type='submit' loading={isLoading}>
                 Создать
               </Button>
             </Form.Field>
