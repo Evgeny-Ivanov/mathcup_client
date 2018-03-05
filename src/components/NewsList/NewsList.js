@@ -9,21 +9,26 @@ import './NewsList.css';
 @observer
 class NewsList extends Component {
   componentDidMount() {
-    const firstPage = 1;
-    this.props.newsStore.fetchNewsList(firstPage);
+    let page = 1;
+    const match = this.props.location.search.match(/\?page=(\d+)$/);
+    if (match) {
+      page = match[1];
+    }
+    this.props.newsStore.fetchNewsList(page);
   }
 
   handlePaginationChange = async (event, { activePage }) => {
+    this.props.history.push(`/news/?page=${activePage}`);
     await this.props.newsStore.fetchNewsList(activePage);
     window.scrollTo(0, 0);
   };
 
   render() {
     const {
-      newsList, fetchState, activePage, totalPages,
+      newsList, fetchListState, activePage, totalPages,
     } = this.props.newsStore;
 
-    if (fetchState.isLoading) {
+    if (fetchListState.isLoading) {
       return <Loader />;
     }
 

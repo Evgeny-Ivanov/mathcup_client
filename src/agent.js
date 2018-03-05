@@ -20,6 +20,8 @@ const User = {
 const News = {
   create: data =>
     axios.post('/api/news/', data),
+  fetch: id =>
+    axios.get(`/api/news/${id}/`),
   fetchList: page =>
     axios.get(`/api/news/?page=${page}&ordering=-date`),
 };
