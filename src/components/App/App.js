@@ -11,6 +11,7 @@ import Profile from '../Profile';
 import CreateNews from '../CreateNews';
 import NewsList from '../NewsList';
 import News from '../News';
+import CreateRound from '../CreateRound';
 import Page404 from '../Page404';
 import './App.css';
 
@@ -37,6 +38,7 @@ class App extends Component {
             <Route exact path='/news/create' component={CreateNews} />
             <Route exact path='/news' component={NewsList} />
             <Route exact path='/news/:id' component={News} />
+            <Route exact path='/rounds/create' component={CreateRound} />
             <Route component={Page404} />
           </Switch>
         </Container>

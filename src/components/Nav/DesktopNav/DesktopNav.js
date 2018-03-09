@@ -34,7 +34,7 @@ class DesktopNav extends Component {
               <Dropdown.Divider />
 
               <Dropdown.Header>Над раундами</Dropdown.Header>
-              <Dropdown.Item>Создать</Dropdown.Item>
+              <Link wrapper={Dropdown.Item} to='/rounds/create'>Создать</Link>
               <Dropdown.Divider />
 
               <Dropdown.Header>Над новостями</Dropdown.Header>

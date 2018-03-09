@@ -10,7 +10,7 @@ import './CreateNews.css';
 class CreateNews extends Component {
   state = {
     header: '',
-    content: {},
+    content: Editor.createEmptyEditorState(),
     isRedirect: false,
   };
 
@@ -22,7 +22,11 @@ class CreateNews extends Component {
     event.preventDefault();
 
     const { header, content } = this.state;
-    await this.props.newsStore.createNews({ header, content });
+
+    await this.props.newsStore.createNews({
+      header,
+      content: Editor.convertToRaw(content),
+    });
     this.setState({ isRedirect: true });
   };
 
@@ -31,7 +35,7 @@ class CreateNews extends Component {
   };
 
   render() {
-    const { header, isRedirect } = this.state;
+    const { header, content, isRedirect } = this.state;
     const { isLoading } = this.props.newsStore.createState;
 
     if (isRedirect) {
@@ -53,7 +57,7 @@ class CreateNews extends Component {
             </Form.Field>
             <Form.Field>
               <label>Текст</label>
-              <Editor onChange={this.handleContentChange} />
+              <Editor onChange={this.handleContentChange} editorState={content} />
             </Form.Field>
             <Form.Field className='create-news__submit-button-wrapper'>
               <Button type='submit' loading={isLoading}>

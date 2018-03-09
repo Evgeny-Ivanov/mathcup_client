@@ -25,3 +25,5 @@ yarn.lock
 README.md
 package-lock.json
 .idea/
+
+tmp/

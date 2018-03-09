@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import agent from '../../agent';
 import './Editor.css';
 
-class ContentEditor extends Component {
-  state = {
-    editorState: EditorState.createEmpty(),
-  };
+class CustomEditor extends Component {
+  static convertToRaw(editorState) {
+    const content = editorState.getCurrentContent();
+    return convertToRaw(content);
+  }
+
+  static createEmptyEditorState() {
+    return EditorState.createEmpty();
+  }
 
   handleEditorStateChange = (editorState) => {
-    this.setState({ editorState });
-
-    const content = editorState.getCurrentContent();
-    const raw = convertToRaw(content);
-    this.props.onChange(raw);
+    this.props.onChange(editorState);
   };
 
   uploadCallback = (file) => {
@@ -25,7 +27,7 @@ class ContentEditor extends Component {
   };
 
   render() {
-    const { editorState } = this.state;
+    const { editorState } = this.props;
     return (
       <Editor
         editorState={editorState}
@@ -44,4 +46,8 @@ class ContentEditor extends Component {
   }
 }
 
-export default ContentEditor;
+CustomEditor.propTypes = {
+  editorState: PropTypes.object.isRequired,
+};
+
+export default CustomEditor;

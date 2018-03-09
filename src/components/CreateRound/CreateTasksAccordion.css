@@ -1,0 +1,19 @@
+.create-round__add-task-button {
+    margin-top: 20px !important;
+}
+
+.create-round__remove-task-button {
+    opacity: .45 !important;
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+}
+
+.create-round__remove-task-button:hover {
+    opacity: 1 !important;
+}
+
+.create-round__accordion {
+    border: 1px solid rgba(34,36,38,.15);
+    box-shadow: none !important;
+}

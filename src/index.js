@@ -12,6 +12,7 @@ import commonStore from './stores/commonStore';
 import signUpStore from './stores/signUpStore';
 import signInStore from './stores/signInStore';
 import newsStore from './stores/newsStore';
+import createRoundStore from './stores/rounds/createRoundStore';
 
 const stores = {
   userStore,
@@ -19,6 +20,7 @@ const stores = {
   signInStore,
   signUpStore,
   newsStore,
+  createRoundStore,
 };
 
 configure();

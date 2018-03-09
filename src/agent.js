@@ -31,8 +31,16 @@ const Helpers = {
     axios.post('/api/common/upload/image/', data),
 };
 
+const Rounds = {
+  create: data =>
+    axios.post('/api/rounds/', data),
+  fetchWithTasks: id =>
+    axios.get(`/api/rounds/${id}/`),
+};
+
 export default {
   Helpers,
   News,
+  Rounds,
   User,
 };
