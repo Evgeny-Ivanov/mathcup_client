@@ -3,9 +3,11 @@ import { Header, Icon, Item, Pagination } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
 import Loader from '../Loader';
 import NewsListItem from './NewsListItem';
-import './NewsList.css';
+import AdminMenuItems from './AdminMenuItems';
+import withAdminMenu from '../withAdminMenu';
 
-@inject('newsStore')
+@withAdminMenu(AdminMenuItems)
+@inject('newsListStore')
 @observer
 class NewsList extends Component {
   componentDidMount() {
@@ -14,21 +16,21 @@ class NewsList extends Component {
     if (match) {
       page = match[1];
     }
-    this.props.newsStore.fetchNewsList(page);
+    this.props.newsListStore.fetchNewsList(page);
   }
 
   handlePaginationChange = async (event, { activePage }) => {
     this.props.history.push(`/news/?page=${activePage}`);
-    await this.props.newsStore.fetchNewsList(activePage);
+    await this.props.newsListStore.fetchNewsList(activePage);
     window.scrollTo(0, 0);
   };
 
   render() {
     const {
-      newsList, fetchListState, activePage, totalPages,
-    } = this.props.newsStore;
+      newsList, isLoading, activePage, totalPages, count, pageSize,
+    } = this.props.newsListStore;
 
-    if (fetchListState.isLoading) {
+    if (isLoading) {
       return <Loader />;
     }
 
@@ -49,13 +51,16 @@ class NewsList extends Component {
         <Item.Group divided>
           {newsList.map(props => <NewsListItem key={props.id} {...props} />)}
         </Item.Group>
-        <div className='news-list-pagination-wrapper'>
+        { count > pageSize &&
           <Pagination
+            className='right floated'
+            firstItem={null}
+            lastItem={null}
             activePage={activePage}
             onPageChange={this.handlePaginationChange}
             totalPages={totalPages}
           />
-        </div>
+        }
       </Fragment>
     );
   }

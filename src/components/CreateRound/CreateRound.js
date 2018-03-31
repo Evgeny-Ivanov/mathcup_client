@@ -9,6 +9,16 @@ import DatePicker from '../DatePicker';
 @inject('createRoundStore')
 @observer
 class CreateRound extends Component {
+  componentDidMount() {
+    this.props.createRoundStore.reset();
+    const { id } = this.props.match.params;
+    this.props.createRoundStore.data.tournament = id;
+  }
+
+  componentWillUnmount() {
+    this.props.createRoundStore.reset();
+  }
+
   handleCreateRound = (event) => {
     event.preventDefault();
     this.props.createRoundStore.createRound();
@@ -31,12 +41,10 @@ class CreateRound extends Component {
   };
 
   render() {
-    const {
-      isLoading, isSuccess, data, createdRound,
-    } = this.props.createRoundStore;
+    const { isLoading, isSuccess, data } = this.props.createRoundStore;
 
     if (isSuccess) {
-      return <Redirect to={`/rounds/${createdRound.id}/`} />;
+      return <Redirect to={`/tournaments/${data.tournament}/`} />;
     }
 
     return (
@@ -80,6 +88,15 @@ class CreateRound extends Component {
                 date={data.end}
                 minDate={data.start}
                 onChange={this.handleChangeEnd}
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <Checkbox
+                name='isPublished'
+                checked={data.isPublished}
+                label='Сделать видимым для пользователей'
+                onChange={this.handleChangeCheckbox}
               />
             </Form.Field>
 

@@ -3,42 +3,31 @@ import { inject, observer } from 'mobx-react';
 import { Redirect } from 'react-router-dom';
 import { Button, Card, Form } from 'semantic-ui-react';
 import Editor from '../Editor';
-import './CreateNews.css';
 
-@inject('newsStore')
+@inject('createNewsStore')
 @observer
 class CreateNews extends Component {
-  state = {
-    header: '',
-    content: Editor.createEmptyEditorState(),
-    isRedirect: false,
-  };
+  componentWillUnmount() {
+    this.props.createNewsStore.reset();
+  }
 
   handleContentChange = (content) => {
-    this.setState({ content });
+    this.props.createNewsStore.data.content = content;
   };
 
-  handleCreateNews = async (event) => {
+  handleCreateNews = (event) => {
     event.preventDefault();
-
-    const { header, content } = this.state;
-
-    await this.props.newsStore.createNews({
-      header,
-      content: Editor.convertToRaw(content),
-    });
-    this.setState({ isRedirect: true });
+    this.props.createNewsStore.createNews();
   };
 
   handleChange = (event, { name, value }) => {
-    this.setState({ [name]: value });
+    this.props.createNewsStore.data[name] = value;
   };
 
   render() {
-    const { header, content, isRedirect } = this.state;
-    const { isLoading } = this.props.newsStore.createState;
+    const { isLoading, isSuccess, data } = this.props.createNewsStore;
 
-    if (isRedirect) {
+    if (isSuccess) {
       return <Redirect to='/news' />;
     }
 
@@ -51,19 +40,17 @@ class CreateNews extends Component {
               <Form.Input
                 required
                 name='header'
-                value={header}
+                value={data.header}
                 onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field>
               <label>Текст</label>
-              <Editor onChange={this.handleContentChange} editorState={content} />
+              <Editor onChange={this.handleContentChange} editorState={data.content} />
             </Form.Field>
-            <Form.Field className='create-news__submit-button-wrapper'>
-              <Button type='submit' loading={isLoading}>
-                Создать
-              </Button>
-            </Form.Field>
+            <Button type='submit' loading={isLoading} floated='right'>
+              Создать
+            </Button>
           </Form>
         </Card.Content>
       </Card>

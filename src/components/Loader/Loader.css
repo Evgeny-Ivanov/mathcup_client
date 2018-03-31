@@ -1,3 +1,4 @@
 .custom-loader {
+    position: fixed !important;
     top: calc(50% - 100px) !important;
 }

@@ -6,6 +6,12 @@ class CommonStore {
   @action setAppLoaded() {
     this.appLoaded = true;
   }
+
+  @observable MobileAdminMenu;
+
+  @action setMobileAdminMenu(MobileAdminMenu) {
+    this.MobileAdminMenu = MobileAdminMenu;
+  }
 }
 
 export default new CommonStore();

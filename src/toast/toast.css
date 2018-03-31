@@ -1,0 +1,15 @@
+.custom-toast {
+    border-radius: .28571429rem !important;
+}
+
+.custom-toast-success {
+    box-shadow: 0 0 0 1px #a3c293 inset, 0 0 0 0 transparent !important;
+    color: #2c662d !important;
+    background-color: #fcfff5 !important;
+}
+
+.custom-toast-error {
+    box-shadow: 0 0 0 1px #e0b4b4 inset, 0 0 0 0 transparent !important;
+    color: #9f3a38 !important;
+    background-color: #fff6f6 !important;
+}

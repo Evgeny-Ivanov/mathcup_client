@@ -66,7 +66,7 @@ class CropperModal extends Component {
               ref='cropper'
               src={imageSrc || user.avatar}
               className='cropper'
-              aspectRatio={3 / 4}
+              aspectRatio={1 / 1}
               guides={false}
             />
           </Modal.Description>
@@ -82,7 +82,7 @@ class CropperModal extends Component {
             />
           </label>
 
-          <Button primary onClick={this.handleUpdateImage}>
+          <Button color='grey' onClick={this.handleUpdateImage}>
             Сохранить <Icon name='right chevron' />
           </Button>
         </Modal.Actions>

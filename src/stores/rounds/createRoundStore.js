@@ -6,10 +6,12 @@ import Editor from '../../components/Editor';
 const createEmptyTask = () => ({
   text: Editor.createEmptyEditorState(),
   answer: '',
+  weight: 1,
 });
 
 const createDefaultData = () => ({
-  tournament: 1,
+  isPublished: false,
+  tournament: null,
   name: '',
   winnersCount: 10,
   start: moment(),
@@ -24,8 +26,6 @@ class CreateRoundStore {
   @observable isLoading = false;
 
   @observable isSuccess = false;
-
-  @observable createdRound;
 
   @observable activeTaskIndex = 0;
 
@@ -49,11 +49,6 @@ class CreateRoundStore {
     }
   };
 
-  @action reset = () => {
-    this.data = createDefaultData();
-    this.isSuccess = false;
-  };
-
   prepareData() {
     const tasks = this.data.tasks.map(({ text, ...rest }) => ({
       text: Editor.convertToRaw(text),
@@ -67,17 +62,21 @@ class CreateRoundStore {
   }
 
   @action createRound = async () => {
-    const data = this.prepareData();
     this.isLoading = true;
+    const data = this.prepareData();
     try {
-      const res = await agent.Rounds.create(data);
-      this.createdRound = res.data;
+      await agent.Rounds.create(data);
       this.isSuccess = true;
-      this.reset();
     } finally {
       this.isLoading = false;
     }
-  }
+  };
+
+  @action reset = () => {
+    this.data = createDefaultData();
+    this.isSuccess = false;
+    this.activeTaskIndex = 0;
+  };
 }
 
 export default new CreateRoundStore();

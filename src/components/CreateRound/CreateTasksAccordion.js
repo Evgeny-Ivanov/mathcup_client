@@ -61,7 +61,7 @@ class CreateTasksAccordion extends Component {
               className='create-round__add-task-button'
               type='button'
               icon
-              primary
+              color='grey'
               size='small'
               onClick={this.handleAddTask}
             >

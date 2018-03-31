@@ -34,13 +34,48 @@ const Helpers = {
 const Rounds = {
   create: data =>
     axios.post('/api/rounds/', data),
-  fetchWithTasks: id =>
+  fetch: id =>
     axios.get(`/api/rounds/${id}/`),
+  fetchAnswers: id =>
+    axios.get(`/api/rounds/${id}/answers/`),
+  fetchRating: id =>
+    axios.get(`/api/rounds/${id}/rating/`),
+  fetchTasks: id =>
+    axios.get(`/api/rounds/${id}/tasks/`),
+  fetchUserScore: id =>
+    axios.get(`/api/rounds/${id}/users/current/score/`),
+  join: id =>
+    axios.post(`/api/rounds/${id}/users/`),
+  unjoin: id =>
+    axios.delete(`/api/rounds/${id}/users/`),
+  update: (id, data) =>
+    axios.patch(`/api/rounds/${id}/`, data),
+};
+
+
+const Answers = {
+  create: data =>
+    axios.post('/api/answers/', data),
+};
+
+const Tournaments = {
+  create: data =>
+    axios.post('/api/tournaments/', data),
+  fetch: id =>
+    axios.get(`/api/tournaments/${id}/`),
+  fetchList: page =>
+    axios.get(`/api/tournaments/?page=${page}&ordering=-create_date`),
+  fetchRounds: id =>
+    axios.get(`/api/tournaments/${id}/rounds/?ordering=-start`),
+  update: (id, data) =>
+    axios.patch(`/api/tournaments/${id}/`, data),
 };
 
 export default {
   Helpers,
   News,
   Rounds,
+  Tournaments,
+  Answers,
   User,
 };

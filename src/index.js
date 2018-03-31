@@ -7,20 +7,38 @@ import App from './components/App';
 import configure from './configure';
 import registerServiceWorker from './registerServiceWorker';
 
-import userStore from './stores/userStore';
 import commonStore from './stores/commonStore';
-import signUpStore from './stores/signUpStore';
-import signInStore from './stores/signInStore';
-import newsStore from './stores/newsStore';
+import createNewsStore from './stores/news/createNewsStore';
 import createRoundStore from './stores/rounds/createRoundStore';
+import createTournamentStore from './stores/tournaments/createTournamentStore';
+import newsListStore from './stores/news/newsListStore';
+import newsStore from './stores/news/newsStore';
+import passRoundStore from './stores/rounds/passRoundStore';
+import roundRatingStore from './stores/rounds/roundRatingStore';
+import roundResultStore from './stores/rounds/roundResultStore';
+import roundStore from './stores/rounds/roundStore';
+import signInStore from './stores/signInStore';
+import signUpStore from './stores/signUpStore';
+import tournamentStore from './stores/tournaments/tournamentStore';
+import tournamentsStore from './stores/tournaments/tournamentsStore';
+import userStore from './stores/userStore';
 
 const stores = {
-  userStore,
   commonStore,
+  createNewsStore,
+  createRoundStore,
+  createTournamentStore,
+  newsListStore,
+  newsStore,
+  passRoundStore,
+  roundRatingStore,
+  roundResultStore,
+  roundStore,
   signInStore,
   signUpStore,
-  newsStore,
-  createRoundStore,
+  tournamentStore,
+  tournamentsStore,
+  userStore,
 };
 
 configure();

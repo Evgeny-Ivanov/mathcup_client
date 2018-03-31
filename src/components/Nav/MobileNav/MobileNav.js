@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
 import { Icon, Menu, Sidebar } from 'semantic-ui-react';
 import SignIn from '../../SignIn';
 import SignUp from '../../SignUp';
-import Link from '../../Link';
+import Link from '../Link';
 import './MobileNav.css';
 import logo from './../logo.svg';
 
-@inject('userStore')
+@inject('userStore', 'commonStore')
+@withRouter
 @observer
 class MobileNav extends Component {
   state = {
@@ -47,10 +49,15 @@ class MobileNav extends Component {
           <Link wrapper={Menu.Item} to='/news' onClick={this.handleClose}>
             Новости
           </Link>
+          <Link wrapper={Menu.Item} to='/tournaments' onClick={this.handleClose}>
+            Турниры
+          </Link>
 
           {isAuth && (
             <Fragment>
-              <Link wrapper={Menu.Item} to='/profile'>Профиль</Link>
+              <Link wrapper={Menu.Item} to='/profile' onClick={this.handleClose}>
+                Профиль
+              </Link>
             </Fragment>
           )}
 
@@ -69,6 +76,8 @@ class MobileNav extends Component {
               )}
             </Menu.Menu>
           </Menu.Item>
+
+          {this.props.commonStore.MobileAdminMenu}
         </Sidebar>
 
         <Sidebar.Pusher
@@ -95,7 +104,6 @@ class MobileNav extends Component {
 
 MobileNav.propTypes = {
   children: PropTypes.node,
-  location: PropTypes.object.isRequired,
 };
 
 export default MobileNav;

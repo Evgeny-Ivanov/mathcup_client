@@ -1,0 +1,27 @@
+.pass-round__tasks-navigation {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pass-round__tasks-navigation-item {
+    margin: 2px !important;
+    padding: 5px !important;
+    font-size: 0.8em !important;
+}
+
+.pass-round__time-left {
+    text-align: right;
+}
+
+.pass-round__time-left-row {
+    padding-top: 0 !important;
+}
+
+.pass-round__task-num {
+    font-weight: 700;
+}
+
+.pass-round_margin {
+    margin-top: 20px !important;
+}

@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Grid, Header, Image, Tab } from 'semantic-ui-react';
+import { Grid, Header, Image } from 'semantic-ui-react';
 import CropperModal from './CropperModal';
-import './Profile.css';
 import ProfileForm from './ProfileForm';
-import Events from './Events';
-import Achievements from './Achievements';
-
-const panes = [
-  { menuItem: 'Достижения', render: Achievements },
-  { menuItem: 'Последнии события', render: Events },
-  { menuItem: 'Редактировать профиль', render: () => <ProfileForm /> },
-];
+import './Profile.css';
 
 @inject('userStore')
 @observer
@@ -25,7 +17,7 @@ class Profile extends Component {
           <Grid.Column width={4}>
             <div className='profile-image-wrapper'>
               <CropperModal />
-              <Image src={user.avatar} bordered rounded className='profile-image'/>
+              <Image src={user.avatar} bordered rounded className='profile-image' />
             </div>
           </Grid.Column>
 
@@ -36,7 +28,7 @@ class Profile extends Component {
                 {user.email}
               </Header.Subheader>
             </Header>
-            <Tab menu={{ pointing: true, secondary: true }} panes={panes} />
+            <ProfileForm />
           </Grid.Column>
         </Grid.Row>
       </Grid>

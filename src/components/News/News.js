@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
+import { Redirect, withRouter } from 'react-router-dom';
 import { Divider, Item } from 'semantic-ui-react';
 import Loader from '../Loader';
-import Page404 from '../Page404';
 import RawDraftReader from '../RawDraftReader';
 
 @inject('newsStore')
+@withRouter
 @observer
 class News extends Component {
   componentDidMount() {
@@ -14,18 +15,23 @@ class News extends Component {
     this.props.newsStore.fetchNews(id);
   }
 
-  render() {
-    const { news, fetchState } = this.props.newsStore;
+  componentWillUnmount() {
+    this.props.newsStore.reset();
+  }
 
-    if (fetchState.notFound) {
-      return <Page404 />;
+  render() {
+    const { isNotFound, news } = this.props.newsStore;
+
+    if (isNotFound) {
+      return <Redirect to='/404' />;
     }
 
-    if (!news || fetchState.isLoading) {
+    if (!news) {
       return <Loader />;
     }
 
     const { header, content, date } = news;
+
     return (
       <Item.Group>
         <Item>

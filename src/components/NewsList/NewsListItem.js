@@ -1,13 +1,17 @@
 import React from 'react';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
-import Link from '../Link';
 import RawDraftReader from '../RawDraftReader';
 
-const NewsListItem = ({ id, header, content, date }) => (
+const NewsListItem = ({
+  id, header, content, date, history,
+}) => (
   <Item>
     <Item.Content>
-      <Link to={`/news/${id}`} wrapper={Item.Header} as='a'>{header}</Link>
+      <Item.Header as='a' onClick={() => history.push(`/news/${id}`)}>
+        {header}
+      </Item.Header>
       <Item.Description>
         <RawDraftReader content={content} blockCount={2} />
       </Item.Description>
@@ -16,4 +20,4 @@ const NewsListItem = ({ id, header, content, date }) => (
   </Item>
 );
 
-export default NewsListItem;
+export default withRouter(NewsListItem);

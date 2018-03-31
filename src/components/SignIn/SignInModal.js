@@ -17,7 +17,7 @@ class SignInModal extends Component {
           <SignInForm formId={formId} />
         </Modal.Content>
         <Modal.Actions>
-          <Button positive form={formId} loading={isLoading}>
+          <Button color='grey' form={formId} loading={isLoading}>
             Войти
           </Button>
         </Modal.Actions>

@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Button, Container, Grid, Header, Icon, Image, Segment } from 'semantic-ui-react';
 import './AboutUs.css';
 
-const AboutUs = () => (
+const AboutUs = ({ history }) => (
   <Fragment>
     <Segment vertical className='about-us-first-block'>
       <Grid container stackable verticalAlign='middle'>
@@ -32,7 +33,7 @@ const AboutUs = () => (
 
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>
+            <Button size='huge' onClick={() => history.push('/tournaments/')}>
               Участвовать
               <Icon name='right arrow' />
             </Button>
@@ -53,4 +54,4 @@ const AboutUs = () => (
   </Fragment>
 );
 
-export default AboutUs;
+export default withRouter(AboutUs);

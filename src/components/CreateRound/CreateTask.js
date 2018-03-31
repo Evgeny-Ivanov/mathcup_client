@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import { Form } from 'semantic-ui-react';
+import { Checkbox, Form } from 'semantic-ui-react';
 import Editor from '../Editor';
 
 @inject('createRoundStore')
@@ -15,8 +15,28 @@ class CreateTask extends Component {
     this.props.createRoundStore.data.tasks[this.props.index].text = text;
   };
 
+  handleChangeCheckbox = (event, { name, value }) => {
+    this.props.createRoundStore.data.tasks[this.props.index][name] = value;
+  };
+
   render() {
-    const { answer, text } = this.props;
+    const { answer, text, weight } = this.props;
+
+    const weightFields = [];
+    for (let i = 1; i <= 5; i++) {
+      weightFields.push((
+        <Form.Field>
+          <Checkbox
+            radio
+            name='weight'
+            label={i}
+            value={i}
+            checked={weight === i}
+            onChange={this.handleChangeCheckbox}
+          />
+        </Form.Field>
+      ));
+    }
 
     return (
       <Fragment>
@@ -33,6 +53,10 @@ class CreateTask extends Component {
             onChange={this.handleChange}
           />
         </Form.Field>
+        <Form.Group inline>
+          <label>Сложность вопроса</label>
+          {weightFields}
+        </Form.Group>
       </Fragment>
     );
   }

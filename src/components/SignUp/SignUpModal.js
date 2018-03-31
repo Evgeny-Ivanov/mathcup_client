@@ -40,7 +40,7 @@ class SignUpModal extends Component {
                   <Icon name='right arrow' />
                 </Button>
                 <Button
-                  positive
+                  color='grey'
                   form={step1formId}
                   loading={stateStep1.isLoading}
                 >
@@ -58,7 +58,7 @@ class SignUpModal extends Component {
                   <Icon name='left arrow' />
                 </Button>
                 <Button
-                  positive
+                  color='grey'
                   form={step2formId}
                   loading={stateStep2.isLoading}
                 >
