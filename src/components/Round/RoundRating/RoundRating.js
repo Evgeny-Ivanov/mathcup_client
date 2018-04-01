@@ -63,7 +63,7 @@ class RoundRating extends Component {
           {rating.map(props => <UserResult key={props.user.id} {...props} />)}
         </Table.Body>
 
-        { !isUserInTop && userScore &&
+        { !isUserInTop && userScore !== null &&
           <Table.Footer>
             <Table.Row>
               <Table.HeaderCell colSpan='3' textAlign='center'>

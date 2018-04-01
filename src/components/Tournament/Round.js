@@ -42,7 +42,7 @@ class Round extends Component {
           <Item.Meta>
             {do {
               if (isRunning) <span>идет</span>;
-              else if (isEnded) <span>закончился {moment(start).fromNow()}</span>;
+              else if (isEnded) <span>закончился {moment(end).fromNow()}</span>;
               else <span>начнется {moment(start).fromNow()}</span>;
             }}
           </Item.Meta>

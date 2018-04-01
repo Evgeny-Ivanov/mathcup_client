@@ -48,7 +48,7 @@ class Tournament extends Component {
 
     return (
       <Fragment>
-        <Header textAlign='center'>Турнир {tournament.name}</Header>
+        <Header textAlign='center'>Турнир: {tournament.name}</Header>
         <Item.Group divided>
           {rounds.map(props => <Round key={props.id} {...props} />)}
         </Item.Group>
